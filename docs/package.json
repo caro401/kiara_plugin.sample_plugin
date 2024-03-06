@@ -1,0 +1,32 @@
+{
+  "name": "kiara-#PLUGIN_NAME-doc",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "check": "astro check",
+    "build": " astro build",
+    "preview": "astro preview",
+    "format": "prettier --write . --plugin=prettier-plugin-astro",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.0",
+    "@astrojs/mdx": "^2.1.1",
+    "@astrojs/starlight": "^0.19.0",
+    "@astrojs/svelte": "^5.0.3",
+    "@dharpa/kiara-svelte-components": "^0.0.1",
+    "astro": "^4.2.1",
+    "dayjs": "^1.11.10",
+    "semver-sort": "^1.0.0",
+    "sharp": "^0.32.5",
+    "svelte": "^4.2.9",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.4",
+    "prettier-plugin-astro": "^0.13.0",
+    "sanitize-html": "^2.11.0"
+  }
+}

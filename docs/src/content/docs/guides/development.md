@@ -1,11 +1,13 @@
-# Development
-
+---
+title: How to work on this plugin
+description: Migrated from old docs solution, probably not relevant anymore?
+---
 
 ## Prepare development environment
 
 ### Using conda (recommended)
 
-```
+```sh
 conda create -n sample_plugin python=3.9
 conda activate sample_plugin
 conda install -c conda-forge mamba   # this is optional, but makes everything install related much faster, if you don't use it, replace 'mamba' with 'conda' below
@@ -24,13 +26,13 @@ First, fork the [kiara_plugin.sample_plugin](https://github.com/DHARPA-Project/k
 
 Then, use the resulting url (in my case: https://github.com/makkus/kiara_modules.sample_plugin.git) to clone the repository locally:
 
-```
-https://github.com/<YOUR_FORKED_GITHUB_ID>/kiara_plugin.sample_plugin
+```sh
+git clone https://github.com/<YOUR_FORKED_GITHUB_ID>/kiara_plugin.sample_plugin
 ```
 
 ## Install the kiara plugin package into it
 
-```
+```sh
 cd kiara_plugin.sample_plugin
 pip install -e '.[all_dev]'
 ```
@@ -45,7 +47,7 @@ This step is optional, but helps with keeping the code clean and CI from failing
 whenever you do a `git commit` in this repo, a series of checks and cleanup tasks are run, until everything is in a state
 that will hopefully make Github Actions not complain when you push your changes.
 
-```
+```sh
 pre-commit install
 pre-commit install --hook-type commit-msg
 ```
@@ -57,7 +59,7 @@ https://www.conventionalcommits.org/en/v1.0.0/
 
 To check if everything works as expected and you can start adding/changing code in this repository, run any `kiara` command:
 
-```
+```sh
 kiara operation list -t sample_plugin
 ```
 

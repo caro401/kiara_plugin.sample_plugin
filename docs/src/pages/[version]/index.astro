@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  return (await getCollection("plugin_data")).map((plugin) => {
+    const [_, version] = plugin.id.split("-");
+    return { params: { version: version } };
+  });
+}
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { Doc, Authors } from "@dharpa/kiara-svelte-components";
+import { getDataEntryById } from "astro:content";
+const { version } = Astro.params;
+const data = (
+  await getDataEntryById(
+    "plugin_data",
+    // @ts-expect-error the build will fail if this string is not one of the files in the `plugins` content collection
+    // todo replace tabular with plugin name from cookiecutter
+    `kiara_plugin.tabular-${version}`,
+  )
+).data;
+---
+
+<StarlightPage
+  frontmatter={{ title: `Kiara plugin #PLUGIN_NAME - ${version}` }}
+>
+  <Doc doc={data.documentation} />
+  <Authors authors={data.authors.authors} />
+</StarlightPage>
