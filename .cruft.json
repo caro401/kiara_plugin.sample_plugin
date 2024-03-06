@@ -1,0 +1,18 @@
+{
+  "template": "https://github.com/DHARPA-Project/kiara_plugin.develop.git",
+  "commit": "ece102a4be81cb7d082dc549e3524c230afa6644",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Caro Appleby",
+      "email": "",
+      "project_name": "sample-plugin",
+      "project_slug": "sample_plugin",
+      "project_short_description": "sample-plugin",
+      "github_user": "caro401",
+      "anaconda_user": "dharpa",
+      "_template": "https://github.com/DHARPA-Project/kiara_plugin.develop.git"
+    }
+  },
+  "directory": null
+}
