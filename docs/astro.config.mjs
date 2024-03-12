@@ -35,6 +35,9 @@ function getOperations() {
 }
 // https://astro.build/config
 export default defineConfig({
+  // TODO cookiecutter this
+    site: 'https://caro401.github.io',
+  base: '/kiara_plugin.sample_plugin',
   integrations: [
     starlight({
       title: "kiara #PLUGIN_NAME",
