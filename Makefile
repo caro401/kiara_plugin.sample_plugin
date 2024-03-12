@@ -78,7 +78,7 @@ dist: clean ## build source and wheel packages
 
 
 gen-docs-data:
-	NO_COLOR=true kiara info plugin explain kiara_plugin.sample_plugin --format json > ./docs/src/content/plugin_data/kiara_plugin.sample_plugin-v${TAG}.json
+	kiara info plugin explain kiara_plugin.sample_plugin --format json > ./docs/src/content/plugin_data/kiara_plugin.sample_plugin-v${TAG}.json
 
 docs: gen-docs-data
 	cd docs && npm run build
