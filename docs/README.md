@@ -16,4 +16,6 @@ check manifest.in for wh ether docs should be included (and other things?)
 AUTHOR EMAIL IN COOKIECUTTER IS NOT OPTIONAL
 
 remember to tell users to enable github actions for repo if publishing/linting - go to actions tab, click enable
+remember to tell users to enable github pages (if public repo/paid?) 
 
+> On GitHub, go to your repository’s Settings tab and find the Pages section of the settings. Choose GitHub Actions as the Source of your site.
