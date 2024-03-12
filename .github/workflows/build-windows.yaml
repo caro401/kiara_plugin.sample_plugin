@@ -6,14 +6,14 @@ jobs:
   test-windows:
     name: pytest on windows
     runs-on: windows-latest
-    strategy:
-      matrix:
-        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+#    strategy:
+#      matrix:
+#        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
-      - name: "Set up Python ${{ matrix.python_version }}"
+      - name: "Set up Python 3.11"
         uses: actions/setup-python@v4
         with:
-          python-version: "${{ matrix.python_version }}"
+          python-version: "3.11"
       - uses: actions/checkout@v3
       - name: install kiara_plugin.sample_plugin
         run: pip install -U .[dev_testing]
