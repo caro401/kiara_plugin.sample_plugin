@@ -4,12 +4,6 @@
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-docs: ## build documentation
-	mkdocs build
-
-serve-docs: ## serve and watch documentation
-	mkdocs serve -a 0.0.0.0:8000
-
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
 clean-build: ## remove build artifacts
@@ -81,3 +75,13 @@ dist: clean ## build source and wheel packages
 	python setup.py sdist
 	python setup.py bdist_wheel
 	ls -l dist
+
+
+gen-docs-data:
+	kiara info plugin explain kiara_plugin.sample_plugin --format json > ./docs/src/content/plugin_data/kiara_plugin.sample_plugin-v${TAG}.json
+
+docs: gen-docs-data
+	cd docs && npm run build
+
+serve-docs:
+	npx serve docs/dist
