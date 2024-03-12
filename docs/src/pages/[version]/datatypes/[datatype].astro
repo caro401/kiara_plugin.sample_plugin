@@ -18,7 +18,6 @@ export type Params = {
 
 const { plugin, version, datatype } = Astro.params;
 const data = await getSpecificKiaraTypeInstance(
-  plugin,
   version,
   "data_types",
   datatype,

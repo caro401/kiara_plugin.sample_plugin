@@ -1,0 +1,310 @@
+{
+  "type_name": "kiara_plugin.sample_plugin",
+  "documentation": {
+    "description": "sample-plugin",
+    "doc": "[![PyPI status](https://img.shields.io/pypi/status/kiara_plugin.sample_plugin.svg)](https://pypi.python.org/pypi/kiara_plugin.sample_plugin/)\n[![PyPI version](https://img.shields.io/pypi/v/kiara_plugin.sample_plugin.svg)](https://pypi.python.org/pypi/kiara_plugin.sample_plugin/)\n[![PyPI pyversions](https://img.shields.io/pypi/pyversions/kiara_plugin.sample_plugin.svg)](https://pypi.python.org/pypi/kiara_plugin.sample_plugin/)\n[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcaro401%2Fkiara%2Fbadge%3Fref%3Ddevelop&style=flat)](https://actions-badge.atrox.dev/caro401/kiara_plugin.sample_plugin/goto?ref=develop)\n[![Coverage Status](https://coveralls.io/repos/github/caro401/kiara_plugin.sample_plugin/badge.svg?branch=develop)](https://coveralls.io/github/caro401/kiara_plugin.sample_plugin?branch=develop)\n[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)\n\n# [**kiara**](https://dharpa.org/kiara.documentation) plugin: (sample-plugin)\n\nsample-plugin\n\n - Documentation: [https://caro401.github.io/kiara_plugin.sample_plugin](https://caro401.github.io/kiara_plugin.sample_plugin)\n - Code: [https://github.com/caro401/kiara_plugin.sample_plugin](https://github.com/caro401/kiara_plugin.sample_plugin)\n - `kiara`: [https://dharpa.org/kiara.documentation](https://dharpa.org/kiara.documentation)\n\n## Description\n\nTODO\n\n## Development\n\n### Requirements\n\n- Python (version >= 3.8)\n- pip, virtualenv\n- git\n- make (on Linux / Mac OS X -- optional)\n\n\n### Prepare development environment\n\nIf you only want to work on the modules, and not the core *Kiara* codebase, follow the instructions below. Otherwise, please\ncheck the notes on how to setup a *Kiara* development environment under (TODO).\n\n#### Using `pixi` (recommended)\n\nThe recommended way to setup a development environment is to use [pixi](https://github.com/prefix-dev/pixi). Check out [their install instructions](https://github.com/prefix-dev/pixi#installation).\n\nOnce you have `pixi` installed, you need to initialize the environment once:\n\n```\npixi run install-dev-env\n```\n\nYou also need to do this whenever a depdendency of this plugin is updated (for example the core `kiara` package).\n\nOnce that is done, you can enter the environment with:\n\n```\npixi shell\n```\n\nThis will start a sub-shell with the virtual environment activated, and all dependencies of the plugin package installed. To confirm it works, you can run any `kiara` command:\n\n```\nkiara --version\n# or\nkiara operation list\n# or\n...\n...\n```\n\nOnce you are finished with your development session, you can exit the sub-shell as you would normally do in such cases:\n\n```\nexit\n```\n\nAlternatively, you can also run the `kiara` executable directly, it is located in `.pixi/env/bin/kiara`. So either adapt your `PATH` variable, or do something like:\n\n```\n.pixi/env/bin/kiara operation list\n```\n\nIn most cases it's recommended to use a pixi shell though.\n\n\n### Using pre-defined development-related tasks\n\nThe included `pixi.toml` file includes some useful tasks that help with development:\n\n- `pixi run pre-commit-check`: runs a set of checks against all files\n- `pixi run tests`: runs the unit tests\n- `pixi run mypy`: run mypy checks\n\n## Copyright & license\n\nThis project is MPL v2.0 licensed, for the license text please check the [LICENSE](/LICENSE) file in this repository."
+  },
+  "authors": {
+    "authors": [
+      {
+        "name": "Caro Appleby",
+        "email": "meow@example.com"
+      }
+    ]
+  },
+  "context": {
+    "references": {
+      "source_repo": {
+        "url": "https://github.com/caro401/kiara_plugin.sample_plugin",
+        "desc": "The module package git repository."
+      },
+      "documentation": {
+        "url": "https://caro401.github.io/kiara_plugin.sample_plugin/",
+        "desc": "The url for the module package documentation."
+      }
+    },
+    "tags": ["sample_plugin"],
+    "labels": {
+      "package": "kiara_plugin.sample_plugin"
+    }
+  },
+  "version": "0.1.dev2+g668bb3a.d20240312",
+  "data_types": {
+    "group_title": null,
+    "item_infos": {},
+    "type_name": "data_type"
+  },
+  "module_types": {
+    "group_title": null,
+    "item_infos": {
+      "sample_plugin.example": {
+        "type_name": "sample_plugin.example",
+        "documentation": {
+          "description": "A very simple example module; concatenate two strings.",
+          "doc": "The purpose of this modules is to show the main elements of a [`KiaraModule`][kiara.modules.KiaraModule]:\n\n- ***the (optional) configuration class***: must inherit from [`KiaraModuleConfig`][kiara.modules.KiaraModuleConfig], and the config class must be set as the `_config_cls` attribute\n     on the `KiaraModule` class. Configuration values can be retrieved via the [`self.get_config_value(key)`][kiara.modules.KiaraModule.get_config_value] method\n- ***the inputs description***: must return a dictionary, containing the input name(s) as keys, and another dictionary containing type_name information\n     and documentation about the input data as value\n- ***the outputs description***: must return a dictionary, containing the output name(s) as keys, and another dictionary containing type_name information\n     and documentation about the output data as value\n- ***the ``process`` method***: this is where the actual work gets done. Input data can be accessed via ``inputs.get_value_data(key)``, results\n     can be set with the ``outputs.set_value(key, value)`` method\n\nExample:\n\n    This example module can be tested on the commandline with the ``kiara run`` command:\n\n    ```\n    kiara run core_types.example text_1=\"xxx\" text_2=\"yyy\"\n    ```"
+        },
+        "authors": {
+          "authors": [
+            {
+              "name": "Caro Appleby",
+              "email": "meow@example.com"
+            }
+          ]
+        },
+        "context": {
+          "references": {
+            "source_repo": {
+              "url": "https://github.com/caro401/kiara_plugin.sample_plugin",
+              "desc": "The module package git repository."
+            },
+            "documentation": {
+              "url": "https://caro401.github.io/kiara_plugin.sample_plugin/",
+              "desc": "The url for the module package documentation."
+            }
+          },
+          "tags": ["sample_plugin"],
+          "labels": {
+            "package": "kiara_plugin.sample_plugin"
+          }
+        },
+        "python_class": {
+          "python_class_name": "ExampleModule",
+          "python_module_name": "kiara_plugin.sample_plugin.modules",
+          "full_name": "kiara_plugin.sample_plugin.modules.ExampleModule"
+        },
+        "module_config": {
+          "python_class": {
+            "python_class_name": "ExampleModuleConfig",
+            "python_module_name": "kiara_plugin.sample_plugin.modules",
+            "full_name": "kiara_plugin.sample_plugin.modules.ExampleModuleConfig"
+          },
+          "config_values": {
+            "constants": {
+              "description": "Value constants for this module.",
+              "type": "object",
+              "value_default": null,
+              "required": false
+            },
+            "defaults": {
+              "description": "Value defaults for this module.",
+              "type": "object",
+              "value_default": null,
+              "required": false
+            },
+            "separator": {
+              "description": "The seperator between the two strings.",
+              "type": "string",
+              "value_default": " - ",
+              "required": false
+            }
+          }
+        },
+        "module_src": "class ExampleModule(KiaraModule):\n    \"\"\"A very simple example module; concatenate two strings.\n\n    The purpose of this modules is to show the main elements of a [`KiaraModule`][kiara.modules.KiaraModule]:\n\n    - ***the (optional) configuration class***: must inherit from [`KiaraModuleConfig`][kiara.modules.KiaraModuleConfig], and the config class must be set as the `_config_cls` attribute\n         on the `KiaraModule` class. Configuration values can be retrieved via the [`self.get_config_value(key)`][kiara.modules.KiaraModule.get_config_value] method\n    - ***the inputs description***: must return a dictionary, containing the input name(s) as keys, and another dictionary containing type_name information\n         and documentation about the input data as value\n    - ***the outputs description***: must return a dictionary, containing the output name(s) as keys, and another dictionary containing type_name information\n         and documentation about the output data as value\n    - ***the ``process`` method***: this is where the actual work gets done. Input data can be accessed via ``inputs.get_value_data(key)``, results\n         can be set with the ``outputs.set_value(key, value)`` method\n\n    Example:\n\n        This example module can be tested on the commandline with the ``kiara run`` command:\n\n        ```\n        kiara run core_types.example text_1=\"xxx\" text_2=\"yyy\"\n        ```\n    \"\"\"\n\n    _config_cls = ExampleModuleConfig\n    _module_type_name = \"sample_plugin.example\"\n\n    def create_inputs_schema(\n        self,\n    ) -> ValueMapSchema:\n\n        inputs = {\n            \"text_1\": {\"type\": \"string\", \"doc\": \"The first text.\"},\n            \"text_2\": {\"type\": \"string\", \"doc\": \"The second text.\"},\n        }\n\n        return inputs\n\n    def create_outputs_schema(\n        self,\n    ) -> ValueMapSchema:\n\n        outputs = {\n            \"text\": {\n                \"type\": \"string\",\n                \"doc\": \"The concatenated text.\",\n            }\n        }\n        return outputs\n\n    def process(self, inputs: ValueMap, outputs: ValueMap) -> None:\n\n        separator = self.get_config_value(\"separator\")\n\n        text_1 = inputs.get_value_data(\"text_1\")\n        text_2 = inputs.get_value_data(\"text_2\")\n\n        result = text_1 + separator + text_2\n        outputs.set_value(\"text\", result)\n"
+      }
+    },
+    "type_name": "module_type"
+  },
+  "kiara_model_types": {
+    "group_title": "kiara_models.kiara_plugin.sample_plugin",
+    "item_infos": {},
+    "type_name": "kiara_model"
+  },
+  "operation_types": {
+    "group_title": null,
+    "item_infos": {},
+    "type_name": "operation_type"
+  },
+  "operations": {
+    "group_title": null,
+    "item_infos": {
+      "sample_plugin.example": {
+        "type_name": "sample_plugin.example",
+        "documentation": {
+          "description": "A very simple example module; concatenate two strings.",
+          "doc": "The purpose of this modules is to show the main elements of a [`KiaraModule`][kiara.modules.KiaraModule]:\n\n- ***the (optional) configuration class***: must inherit from [`KiaraModuleConfig`][kiara.modules.KiaraModuleConfig], and the config class must be set as the `_config_cls` attribute\n     on the `KiaraModule` class. Configuration values can be retrieved via the [`self.get_config_value(key)`][kiara.modules.KiaraModule.get_config_value] method\n- ***the inputs description***: must return a dictionary, containing the input name(s) as keys, and another dictionary containing type_name information\n     and documentation about the input data as value\n- ***the outputs description***: must return a dictionary, containing the output name(s) as keys, and another dictionary containing type_name information\n     and documentation about the output data as value\n- ***the ``process`` method***: this is where the actual work gets done. Input data can be accessed via ``inputs.get_value_data(key)``, results\n     can be set with the ``outputs.set_value(key, value)`` method\n\nExample:\n\n    This example module can be tested on the commandline with the ``kiara run`` command:\n\n    ```\n    kiara run core_types.example text_1=\"xxx\" text_2=\"yyy\"\n    ```"
+        },
+        "authors": {
+          "authors": [
+            {
+              "name": "Caro Appleby",
+              "email": "meow@example.com"
+            }
+          ]
+        },
+        "context": {
+          "references": {
+            "source_repo": {
+              "url": "https://github.com/caro401/kiara_plugin.sample_plugin",
+              "desc": "The module package git repository."
+            },
+            "documentation": {
+              "url": "https://caro401.github.io/kiara_plugin.sample_plugin/",
+              "desc": "The url for the module package documentation."
+            }
+          },
+          "tags": ["sample_plugin"],
+          "labels": {
+            "package": "kiara_plugin.sample_plugin"
+          }
+        },
+        "operation": {
+          "module_type": "sample_plugin.example",
+          "module_config": {},
+          "is_resolved": false,
+          "operation_id": "sample_plugin.example",
+          "operation_details": {
+            "operation_id": "sample_plugin.example",
+            "is_internal_operation": false
+          },
+          "doc": {
+            "description": "A very simple example module; concatenate two strings.",
+            "doc": "The purpose of this modules is to show the main elements of a [`KiaraModule`][kiara.modules.KiaraModule]:\n\n- ***the (optional) configuration class***: must inherit from [`KiaraModuleConfig`][kiara.modules.KiaraModuleConfig], and the config class must be set as the `_config_cls` attribute\n     on the `KiaraModule` class. Configuration values can be retrieved via the [`self.get_config_value(key)`][kiara.modules.KiaraModule.get_config_value] method\n- ***the inputs description***: must return a dictionary, containing the input name(s) as keys, and another dictionary containing type_name information\n     and documentation about the input data as value\n- ***the outputs description***: must return a dictionary, containing the output name(s) as keys, and another dictionary containing type_name information\n     and documentation about the output data as value\n- ***the ``process`` method***: this is where the actual work gets done. Input data can be accessed via ``inputs.get_value_data(key)``, results\n     can be set with the ``outputs.set_value(key, value)`` method\n\nExample:\n\n    This example module can be tested on the commandline with the ``kiara run`` command:\n\n    ```\n    kiara run core_types.example text_1=\"xxx\" text_2=\"yyy\"\n    ```"
+          },
+          "module_details": {
+            "python_class_name": "ExampleModule",
+            "python_module_name": "kiara_plugin.sample_plugin.modules",
+            "full_name": "kiara_plugin.sample_plugin.modules.ExampleModule",
+            "module_config": {
+              "constants": {},
+              "defaults": {},
+              "separator": " - "
+            },
+            "inputs_schema": {
+              "text_1": {
+                "type": "string",
+                "type_config": {},
+                "default": null,
+                "optional": false,
+                "is_constant": false,
+                "doc": {
+                  "description": "The first text.",
+                  "doc": null
+                }
+              },
+              "text_2": {
+                "type": "string",
+                "type_config": {},
+                "default": null,
+                "optional": false,
+                "is_constant": false,
+                "doc": {
+                  "description": "The second text.",
+                  "doc": null
+                }
+              }
+            },
+            "outputs_schema": {
+              "text": {
+                "type": "string",
+                "type_config": {},
+                "default": null,
+                "optional": false,
+                "is_constant": false,
+                "doc": {
+                  "description": "The concatenated text.",
+                  "doc": null
+                }
+              }
+            }
+          },
+          "metadata": {}
+        },
+        "operation_types": ["custom_module"],
+        "input_fields": {
+          "text_1": {
+            "field_name": "text_1",
+            "field_schema": {
+              "type": "string",
+              "type_config": {},
+              "default": null,
+              "optional": false,
+              "is_constant": false,
+              "doc": {
+                "description": "The first text.",
+                "doc": null
+              }
+            },
+            "data_type_info": {
+              "data_type_name": "string",
+              "data_type_config": {
+                "allowed_strings": null
+              },
+              "characteristics": {
+                "is_scalar": true,
+                "is_json_serializable": true
+              },
+              "data_type_class": {
+                "python_class_name": "StringType",
+                "python_module_name": "kiara.data_types.included_core_types",
+                "full_name": "kiara.data_types.included_core_types.StringType"
+              }
+            },
+            "value_required": true
+          },
+          "text_2": {
+            "field_name": "text_2",
+            "field_schema": {
+              "type": "string",
+              "type_config": {},
+              "default": null,
+              "optional": false,
+              "is_constant": false,
+              "doc": {
+                "description": "The second text.",
+                "doc": null
+              }
+            },
+            "data_type_info": {
+              "data_type_name": "string",
+              "data_type_config": {
+                "allowed_strings": null
+              },
+              "characteristics": {
+                "is_scalar": true,
+                "is_json_serializable": true
+              },
+              "data_type_class": {
+                "python_class_name": "StringType",
+                "python_module_name": "kiara.data_types.included_core_types",
+                "full_name": "kiara.data_types.included_core_types.StringType"
+              }
+            },
+            "value_required": true
+          }
+        },
+        "output_fields": {
+          "text": {
+            "field_name": "text",
+            "field_schema": {
+              "type": "string",
+              "type_config": {},
+              "default": null,
+              "optional": false,
+              "is_constant": false,
+              "doc": {
+                "description": "The concatenated text.",
+                "doc": null
+              }
+            },
+            "data_type_info": {
+              "data_type_name": "string",
+              "data_type_config": {
+                "allowed_strings": null
+              },
+              "characteristics": {
+                "is_scalar": true,
+                "is_json_serializable": true
+              },
+              "data_type_class": {
+                "python_class_name": "StringType",
+                "python_module_name": "kiara.data_types.included_core_types",
+                "full_name": "kiara.data_types.included_core_types.StringType"
+              }
+            },
+            "value_required": true
+          }
+        }
+      }
+    }
+  }
+}
