@@ -181,7 +181,7 @@ jobs:
       - name: Install, build, and upload docs site
         uses: withastro/action@v2
         with:
-            path: /docs # The root location of your Astro project inside the repository. (optional)
+            path: "./docs" # The root location of your Astro project inside the repository. (optional)
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
