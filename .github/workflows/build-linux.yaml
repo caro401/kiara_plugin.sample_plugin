@@ -153,9 +153,11 @@ jobs:
         run: pip install -U .
       - name: Generate JSON file
         run: make TAG=${{github.ref_name}} gen-docs-data
-      - run: git config --global user.email "github-actions@example.com"
+      - name: do git things
+        run: git config --global user.email "github-actions@example.com"
       - run: git config --global user.name "Github Actions"
-      - run: git commit -am "Create docs data for version ${{github.ref_name}}"
+      - run: git add .
+      - run: git commit -m "Create docs data for version ${{github.ref_name}}"
       - name: push new file to main branch
         run: git push https://${{ secrets.GITHUB_TOKEN }}@github.com/caro401/kiara_plugin.sample_plugin.git
 
