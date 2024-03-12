@@ -154,6 +154,8 @@ jobs:
       - name: install plugin
         run: pip install -U .
       - name: Generate JSON file
+        env:
+          NO_COLOR: "true"
         run: make TAG=${{github.ref_name}} gen-docs-data
       - name: do git things
         run: | 
