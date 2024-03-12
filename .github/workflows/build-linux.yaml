@@ -143,14 +143,14 @@ jobs:
       - release_python_package
     steps:
       - uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 0
+        with:
+          fetch-depth: 0
       - name: "Set up Python 3.11"
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-#      - name: checkout main branch
-#        run: git checkout main
+      - name: checkout main branch
+        run: git checkout main
       - name: install plugin
         run: pip install -U .
       - name: Generate JSON file
