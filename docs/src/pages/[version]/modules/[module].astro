@@ -17,7 +17,6 @@ export async function getStaticPaths() {
 
 const { plugin, version, module } = Astro.params;
 const data = await getSpecificKiaraTypeInstance(
-  plugin,
   version,
   "module_types",
   module,
