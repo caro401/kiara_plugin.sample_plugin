@@ -10,6 +10,6 @@ recursive-include tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
-recursive-include docs *.md *.jpg *.png *.gif
+recursive-include *.md *.jpg *.png *.gif
 recursive-include src/kiara_plugin/sample_plugin/resources *
 recursive-include src/kiara_plugin/sample_plugin/pipelines *
