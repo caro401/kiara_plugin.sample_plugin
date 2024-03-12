@@ -27,7 +27,7 @@ formats = ["sdist", "bdist_wheel"]
 name = "kiara_plugin.sample_plugin"
 description = "sample-plugin"
 authors = [
-    {name = "Caro Appleby", email = ""}
+    {name = "Caro Appleby", email = "meow@example.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.8"

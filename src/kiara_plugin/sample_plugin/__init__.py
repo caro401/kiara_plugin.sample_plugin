@@ -14,7 +14,7 @@ from kiara.utils.class_loading import (
 )
 
 __author__ = """Caro Appleby"""
-__email__ = ""
+__email__ = "meow@example.com"
 
 
 KIARA_METADATA = {
