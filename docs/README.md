@@ -7,5 +7,13 @@ make something that can generate the json file when a tag is pushed
 ```sh
 kiara info plugin explain kiara_plugin.PLUGIN_NAME --format json > /docs/src/content/plugin_data/kiara_plugin.PLUGIN_NAME-vTAG.json"
 ```
+
 Build and deploy to github pages using [astro's action](https://github.com/withastro/action). Document how to enable that, what it will do, what you need to configure in GH pages, what you need to change to use other things.
+
+remove old mkdocs references
+check manifest.in for wh ether docs should be included (and other things?)
+
+AUTHOR EMAIL IN COOKIECUTTER IS NOT OPTIONAL
+
+remember to tell users to enable github actions for repo if publishing/linting - go to actions tab, click enable
 

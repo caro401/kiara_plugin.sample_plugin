@@ -19,7 +19,6 @@ mamba install -c conda-forge -c dharpa kiara_plugin.core_types kiara_plugin.tabu
 
 Later, alligator.
 
-
 ## Check out the source code
 
 First, fork the [kiara_plugin.sample_plugin](https://github.com/DHARPA-Project/kiara_plugin.sample_plugin) repository into your personal Github account.
@@ -39,7 +38,7 @@ pip install -e '.[all_dev]'
 
 Here we use the `-e` option for the `pip install` command. This installs the local folder as a package in development mode into the current environment. Development mode makes it so that if you change any of the files in this folder, the Python environment will pick it up automatically, and whenever you run anything in this environment the latest version of your code/files are used.
 
-We also install a few additional requirements  (the `[all_dev]` part in the command above) that are not strictly necessary for `kiara` itself, or this package, but help with various development-related tasks.
+We also install a few additional requirements (the `[all_dev]` part in the command above) that are not strictly necessary for `kiara` itself, or this package, but help with various development-related tasks.
 
 ## Install some pre-commit check tooling (optional)
 

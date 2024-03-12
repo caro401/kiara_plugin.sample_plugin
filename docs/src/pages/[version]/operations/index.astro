@@ -10,9 +10,9 @@ export async function getStaticPaths() {
   return await getStaticPathsForPluginVersions();
 }
 
-const { plugin, version } = Astro.params;
+const { version } = Astro.params;
 const operations = Object.values(
-  await getSpecificKiaraType(plugin, version, "operations"),
+  await getSpecificKiaraType(version, "operations"),
 );
 const internalOps = operations.filter(
   (o) => o.operation.operation_details.is_internal_operation,
@@ -33,13 +33,12 @@ const headings = [
 ---
 
 <StarlightPage
-  frontmatter={{ title: `Operations in plugin ${plugin} ${version}` }}
+  frontmatter={{ title: `Operations in plugin version ${version}` }}
   headings={headings}
 >
   <h2 id="public-operations">Public operations</h2>
   <SummariseItemsOfType
     allData={externalOps}
-    {plugin}
     {version}
     pathName="operations"
     description="operations"
@@ -48,7 +47,6 @@ const headings = [
   <h2 id="internal-operations">Internal operations</h2>
   <SummariseItemsOfType
     allData={internalOps}
-    {plugin}
     {version}
     pathName="operations"
     description="operations"

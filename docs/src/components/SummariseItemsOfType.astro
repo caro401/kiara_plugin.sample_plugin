@@ -1,5 +1,5 @@
 ---
-const { allData, pathName, description, plugin, version } = Astro.props;
+const { allData, pathName, description, version } = Astro.props;
 import { Doc } from "@dharpa/kiara-svelte-components";
 ---
 
@@ -17,7 +17,7 @@ import { Doc } from "@dharpa/kiara-svelte-components";
     </ul>
   ) : (
     <p>
-      Plugin {plugin} at version {version} doesn't provide any {description}.
+      Plugin at version {version} doesn't provide any {description}.
     </p>
   )
 }

@@ -28,7 +28,6 @@ export async function getStaticPathsForPluginVersions() {
 }
 
 export async function getSpecificKiaraType(
-  plugin: string,
   version: string,
   kiaraType: string,
 ): Promise<Record<string, any>> {
@@ -37,16 +36,15 @@ export async function getSpecificKiaraType(
       "plugin_data",
       // TODO replace this with plugin name from cookiecutter
       // @ts-expect-error the build will fail if this string is not one of the files in the `plugins` content collection
-      `kiara_plugin.tabular-${version}`,
+      `kiara_plugin.sample_plugin-${version}`,
     )
   ).data[kiaraType].item_infos;
 }
 
 export async function getSpecificKiaraTypeInstance(
-  plugin: string,
   version: string,
   kiaraType: string,
   thingId: string,
 ) {
-  return (await getSpecificKiaraType(plugin, version, kiaraType))[thingId];
+  return (await getSpecificKiaraType(version, kiaraType))[thingId];
 }

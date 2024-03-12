@@ -10,9 +10,9 @@ export async function getStaticPaths() {
   return await getStaticPathsForPluginVersions();
 }
 
-const { plugin, version } = Astro.params;
+const { version } = Astro.params;
 
-const data = await getSpecificKiaraType(plugin, version, "operation_types");
+const data = await getSpecificKiaraType(version, "operation_types");
 
 const data_types = Object.values(data).sort((a, b) =>
   a.type_name.localeCompare(b.type_name),
@@ -23,12 +23,11 @@ const headings = data_types.map((o) => {
 ---
 
 <StarlightPage
-  frontmatter={{ title: `Operation types in plugin ${plugin} ${version}` }}
+  frontmatter={{ title: `Operation types in plugin version ${version}` }}
   headings={headings}
 >
   <SummariseItemsOfType
     allData={data_types}
-    {plugin}
     {version}
     pathName="operationtypes"
     description="operation types"
