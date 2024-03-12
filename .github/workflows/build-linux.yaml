@@ -141,10 +141,14 @@ jobs:
       - release_python_package
     steps:
       - uses: actions/checkout@v4
-      - name: install plugin
-        run: pip install -U .
+      - name: "Set up Python 3.11"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
       - name: checkout main branch
         run: git checkout main
+      - name: install plugin
+        run: pip install -U .
       - name: Generate JSON file
         run: make TAG=${{github.ref_name}} gen-docs-data
       - run: git config --global user.email "github-actions@example.com"
