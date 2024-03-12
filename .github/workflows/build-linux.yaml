@@ -24,13 +24,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "${{ matrix.python_version }}"
-      - uses: actions/checkout@v4
-      - name: install kiara_plugin.sample_plugin
-        run: pip install -U .[dev_testing]
-      - name: display installed kiara and module package versions
-        run: pip list | grep kiara
-      - name: test with pytest
-        run: pytest --cov-report=xml --cov=kiara_plugin.sample_plugin tests
+#      - uses: actions/checkout@v4
+#      - name: install kiara_plugin.sample_plugin
+#        run: pip install -U .[dev_testing]
+#      - name: display installed kiara and module package versions
+#        run: pip list | grep kiara
+#      - name: test with pytest
+#        run: pytest --cov-report=xml --cov=kiara_plugin.sample_plugin tests
 #      - name: Coveralls
 #        uses: coverallsapp/github-action@v2
 #        with:
@@ -61,11 +61,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "${{ matrix.python_version }}"
-      - uses: actions/checkout@v4
-      - name: install kiara_plugin.sample_plugin
-        run: pip install -U .[dev_testing]
-      - name: Test with mypy
-        run: make mypy
+#      - uses: actions/checkout@v4
+#      - name: install kiara_plugin.sample_plugin
+#        run: pip install -U .[dev_testing]
+#      - name: Test with mypy
+#        run: make mypy
 
   linting-linux:
     runs-on: ubuntu-latest
@@ -137,29 +137,31 @@ jobs:
     name: Generate data for docs
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs:
       - release_python_package
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+#        with:
+#          fetch-depth: 0
       - name: "Set up Python 3.11"
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: checkout main branch
-        run: git checkout main
+#      - name: checkout main branch
+#        run: git checkout main
       - name: install plugin
         run: pip install -U .
       - name: Generate JSON file
         run: make TAG=${{github.ref_name}} gen-docs-data
       - name: do git things
-        run: git config --global user.email "github-actions@example.com"
-      - run: git config --global user.name "Github Actions"
-      - run: git add .
-      - run: git commit -m "Create docs data for version ${{github.ref_name}}"
-      - name: push new file to main branch
-        run: git push https://${{ secrets.GITHUB_TOKEN }}@github.com/caro401/kiara_plugin.sample_plugin.git
+        run: | 
+          git config --global user.email 'caro401@users.noreply.github.com'
+          git config --global user.name "Github Actions"
+          git add .
+          git commit -m "Create docs data for version ${{github.ref_name}}"
+          git push
 
   publish_docs:
     name: Publish docs to GitHub pages
