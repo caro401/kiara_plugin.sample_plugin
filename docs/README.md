@@ -19,3 +19,5 @@ remember to tell users to enable github actions for repo if publishing/linting -
 remember to tell users to enable github pages (if public repo/paid?) 
 
 > On GitHub, go to your repository’s Settings tab and find the Pages section of the settings. Choose GitHub Actions as the Source of your site.
+
+Might need to make changes on https://github.com/caro401/kiara_plugin.sample_plugin/settings/environments to allow tags to publish?
