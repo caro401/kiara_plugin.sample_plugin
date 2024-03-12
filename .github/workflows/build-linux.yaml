@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "${{ matrix.python_version }}"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: install kiara_plugin.sample_plugin
         run: pip install -U .[dev_testing]
       - name: display installed kiara and module package versions
@@ -61,7 +61,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "${{ matrix.python_version }}"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: install kiara_plugin.sample_plugin
         run: pip install -U .[dev_testing]
       - name: Test with mypy
@@ -70,7 +70,7 @@ jobs:
   linting-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Python
         uses: actions/setup-python@v4
         with:
@@ -101,7 +101,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: install pip
@@ -140,7 +140,7 @@ jobs:
     needs:
       - release_python_package
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: install plugin
         run: pip install -U .
       - name: checkout main branch
@@ -167,7 +167,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install, build, and upload docs site
         uses: withastro/action@v2
         with:
