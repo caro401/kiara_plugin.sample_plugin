@@ -155,7 +155,7 @@ jobs:
         run: pip install -U .
       - name: Generate JSON file
         env:
-          NO_COLOR: "true"
+          NO_COLOR: "true"  # required to disable rich control characters in non-terminal environment
         run: make TAG=${{github.ref_name}} gen-docs-data
       - name: do git things
         run: | 
@@ -180,6 +180,8 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+        with:
+          ref: main  # not the tag that triggered the workflow, so you get the just-created new docs data
       - name: Install, build, and upload docs site
         uses: withastro/action@v2
         with:
