@@ -27,61 +27,43 @@ clean-test: ## remove test and coverage artifacts
 
 init: clean ## initialize a development environment (to be run in virtualenv)
 	git init
-	git checkout -b develop || true
 	pip install -U pip
-	pip install --extra-index-url https://pypi.fury.io/dharpa/ -U -e '.[dev_utils]'
+	pip install -U -e '.[dev_utils,dev_testing]'
 	pre-commit install
 	pre-commit install --hook-type commit-msg
-	setup-cfg-fmt setup.cfg || true
 	git add "*" ".*"
 	pre-commit run --all-files || true
 	git add "*" ".*"
 
 update-dependencies:  ## update all development dependencies
 	pip install -U pip
-	pip install --extra-index-url https://pypi.fury.io/dharpa/ -U -e '.[all_dev]'
+	pip install -U -e '.[dev_utils,dev_testing]'
 
-
-setup-cfg-fmt: # format setup.cfg
-	setup-cfg-fmt setup.cfg || true
-
-black: ## run black
-	black --config pyproject.toml setup.py src/kiara_plugin/sample_plugin tests
-
-flake: ## check style with flake8
-	flake8 src/kiara_plugin/sample_plugin tests
-
-mypy: ## run mypy
-	mypy  --namespace-packages --explicit-package-base src/kiara_plugin/sample_plugin
+typecheck: ## run mypy
+	mypy --config-file pyproject.toml --ignore-missing-imports "src/"
 
 test: ## run tests quickly with the default Python
-	py.test
-
-test-all: ## run tests on every Python version with tox
-	tox
+	pytest
 
 coverage: ## check code coverage quickly with the default Python
 	coverage run -m pytest tests
-	coverage report -m
-	coverage html
-	$(BROWSER) htmlcov/index.html
+	coverage html --skip-covered --skip-empty
+	coverage report
 
-check: black flake mypy test ## run dev-related checks
+check: pre-commit typecheck test
 
 pre-commit: ## run pre-commit on all files
 	pre-commit run --all-files
 
 dist: clean ## build source and wheel packages
-	python setup.py sdist
-	python setup.py bdist_wheel
+	python -m build
 	ls -l dist
-
 
 gen-docs-data:
 	kiara info plugin explain kiara_plugin.sample_plugin --format json > ./docs/src/content/plugin_data/kiara_plugin.sample_plugin-v${TAG}.json
 
-docs: gen-docs-data
+build-docs: gen-docs-data
 	cd docs && npm run build
 
 serve-docs:
-	npx serve docs/dist
+	cd docs && npm run dev

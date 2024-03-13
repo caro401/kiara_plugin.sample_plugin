@@ -6,23 +6,6 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-[options]
-packages = { find = { where = "src", exclude = ["tests"] } }
-include_package_data = true
-package_dir = { "" = "src" }
-zip_safe = false
-
-[tool.aliases]
-build = "bdist_wheel"
-release = "build upload"
-
-[tool.bdist_wheel]
-universal = 0
-
-[tool.devpi.upload]
-no-vcs = 1
-formats = ["sdist", "bdist_wheel"]
-
 [project]
 name = "kiara_plugin.sample_plugin"
 description = "sample-plugin"
@@ -52,21 +35,19 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[project.urls]
+Homepage = "https://caro401.github.io/kiara_plugin.sample_plugin"
+Documentation = "https://caro401.github.io/kiara_plugin.sample_plugin"
+Repository = "https://github.com/caro401/kiara_plugin.sample_plugin"
+Issues = "https://github.com/caro401/kiara_plugin.sample_plugin/issues"
+Changelog = "https://github.com/caro401/kiara_plugin.sample_plugin/blob/main/CHANGELOG.md"
+
 [project.optional-dependencies]
-dev_documentation = [
-    "kiara[dev_documentation]"
-]
 dev_testing = [
     "kiara[dev_testing]",
 ]
 dev_utils = [
     "kiara[dev_utils]",
-]
-dev_all = [
-    "kiara[dev_all]"
-]
-streamlit = [
-    "kiara_plugin.streamlit"
 ]
 
 [project.entry-points."kiara.plugin"]
@@ -84,28 +65,18 @@ sample_plugin = "kiara_plugin.sample_plugin:find_modules"
 [project.entry-points."kiara.pipelines"]
 sample_plugin = "kiara_plugin.sample_plugin:find_pipelines"
 
+[options]
+packages = { find = { where = "src", exclude = ["tests"] } }
+include_package_data = true
+package_dir = { "" = "src" }
+zip_safe = false
 
-[project.urls]
-homepage = "https://github.com/caro401/kiara_plugin.sample_plugin"
-documentation = "https://caro401.github.io/kiara_plugin.sample_plugin"
-repository = "https://github.com/caro401/kiara_plugin.sample_plugin"
+[tool.aliases]
+build = "bdist_wheel"
+release = "build upload"
 
-[tool.black]
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-  | external
-)/
-'''
+[tool.bdist_wheel]
+universal = 0
 
 [tool.setuptools_scm]
 write_to = "src/kiara_plugin/sample_plugin/version.txt"
@@ -147,9 +118,11 @@ exclude_lines = [
 
 [tool.ruff]
 line-length = 88
-
 src = ["src", "tests"]
+fix = true
+target-version = "py311"
 
+[tool.ruff.lint]
 select = [
     "E",
     "F",
@@ -171,11 +144,9 @@ select = [
     "PLW",
     "PIE",
 ]
-ignore = ["E501", "S101", "SIM118", "SIM108", "PLR2004", "PLR0913", "S110", "PLR0912", "PLR0915", "PIE810"]
+ignore = ["E501"]  # Don't be too fussy about line length
 
-fix = true
 fixable = ["E", "F", "RUF100", "I001", "Q"]
-
 exclude = [
     ".bzr",
     ".direnv",
@@ -197,37 +168,22 @@ exclude = [
     "node_modules",
     "venv",
 ]
-per-file-ignores = { }
-
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+isort.known-first-party = ["kiara", "kiara_plugin"]
+pydocstyle.convention = "google"
 
-# Assume Python 3.10.
-target-version = "py310"
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py"=["S101"] # asserts allowed in tests...
 
-[tool.ruff.mccabe]
-# Unlike Flake8, default to a complexity level of 10.
-max-complexity = 10
 
-[tool.ruff.isort]
-known-first-party = ["kiara", "kiara_plugin"]
-
-[tool.ruff.pydocstyle]
-convention = "google"
-
-[tool.pyright]
-include = ["src"]
-exclude = ["**/__pycache__"]
-ignore = []
-
-reportMissingImports = true
-reportMissingTypeStubs = false
-
-executionEnvironments = [
-]
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 mypy_path = "src"
@@ -235,7 +191,6 @@ namespace_packages = false
 plugins = [
     "pydantic.mypy"
 ]
-
 
 # mypy per-module options:
 [[tool.mypy.overrides]]

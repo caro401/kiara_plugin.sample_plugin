@@ -28,7 +28,7 @@ tags
 *.egg-info
 
 # Unittest and coverage
-htmlcov/*
+htmlcov
 .coverage
 .coverage.*
 .tox
@@ -65,3 +65,4 @@ ci/conda/kiara_plugin.sample_plugin/meta.yaml
 .pixi
 pixi.lock
 dev.py
+**/.DS_Store

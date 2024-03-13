@@ -2,7 +2,6 @@
 
 """Top-level package for kiara_plugin.sample_plugin."""
 
-
 import os
 
 from kiara.utils.class_loading import (
@@ -53,28 +52,22 @@ find_pipelines: KiaraEntryPointItem = (
 )
 
 
-def get_version():
+def get_version() -> str:
     from importlib.metadata import PackageNotFoundError, version
 
+    __version__ = "unknown"
     try:
-        # Change here if project is renamed and does not equal the package name
-        dist_name = __name__
-        __version__ = version(dist_name)
+        # Pass something other than __name__ if project is renamed to something other than the package name
+        __version__ = version(__name__)
     except PackageNotFoundError:
-
         try:
             version_file = os.path.join(os.path.dirname(__file__), "version.txt")
+            with open(version_file, encoding="utf-8") as vf:
+                __version__ = vf.read()
+                # TODO should we be validating anything about what the version is? nonempty at least?
 
-            if os.path.exists(version_file):
-                with open(version_file, encoding="utf-8") as vf:
-                    __version__ = vf.read()
-            else:
-                __version__ = "unknown"
-
-        except (Exception):
+        except OSError:  # noqa=S110
+            # File missing, you don't have permissions to open it, or something else filesystem-related went wrong
             pass
-
-        if __version__ is None:
-            __version__ = "unknown"
 
     return __version__

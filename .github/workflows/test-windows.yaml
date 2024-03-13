@@ -17,5 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: install kiara_plugin.sample_plugin
         run: pip install -U .[dev_testing]
+      - name: display installed kiara and module package versions
+        run: kiara --version
       - name: Test with pytest
         run: make test

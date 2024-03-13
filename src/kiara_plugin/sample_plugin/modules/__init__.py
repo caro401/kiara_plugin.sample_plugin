@@ -6,7 +6,6 @@ from kiara.api import KiaraModule, KiaraModuleConfig, ValueMap, ValueMapSchema
 
 
 class ExampleModuleConfig(KiaraModuleConfig):
-
     separator: str = Field(
         description="The seperator between the two strings.", default=" - "
     )
@@ -15,7 +14,7 @@ class ExampleModuleConfig(KiaraModuleConfig):
 class ExampleModule(KiaraModule):
     """A very simple example module; concatenate two strings.
 
-    The purpose of this modules is to show the main elements of a [`KiaraModule`][kiara.modules.KiaraModule]:
+    The purpose of this module is to show the main elements of a [`KiaraModule`][kiara.modules.KiaraModule]:
 
     - ***the (optional) configuration class***: must inherit from [`KiaraModuleConfig`][kiara.modules.KiaraModuleConfig], and the config class must be set as the `_config_cls` attribute
          on the `KiaraModule` class. Configuration values can be retrieved via the [`self.get_config_value(key)`][kiara.modules.KiaraModule.get_config_value] method
@@ -31,7 +30,7 @@ class ExampleModule(KiaraModule):
         This example module can be tested on the commandline with the ``kiara run`` command:
 
         ```
-        kiara run core_types.example text_1="xxx" text_2="yyy"
+        kiara run sample_plugin.example text_1="xxx" text_2="yyy"
         ```
     """
 
@@ -41,7 +40,6 @@ class ExampleModule(KiaraModule):
     def create_inputs_schema(
         self,
     ) -> ValueMapSchema:
-
         inputs = {
             "text_1": {"type": "string", "doc": "The first text."},
             "text_2": {"type": "string", "doc": "The second text."},
@@ -52,7 +50,6 @@ class ExampleModule(KiaraModule):
     def create_outputs_schema(
         self,
     ) -> ValueMapSchema:
-
         outputs = {
             "text": {
                 "type": "string",
@@ -62,7 +59,6 @@ class ExampleModule(KiaraModule):
         return outputs
 
     def process(self, inputs: ValueMap, outputs: ValueMap) -> None:
-
         separator = self.get_config_value("separator")
 
         text_1 = inputs.get_value_data("text_1")
