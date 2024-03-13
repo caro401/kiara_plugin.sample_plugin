@@ -1,15 +1,12 @@
 name: "windows tests for 'kiara_plugin.sample_plugin'"
-# This workflow is triggered on pushes to the repository.
 on: [push]
 
 jobs:
   test-windows:
     name: pytest on windows
     runs-on: windows-latest
-#    strategy:
-#      matrix:
-#        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
+      - uses: actions/checkout@v4
       - name: "Set up Python 3.11"
         uses: actions/setup-python@v5
         with:

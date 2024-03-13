@@ -1,5 +1,4 @@
 name: "darwin tests for 'kiara_plugin.sample_plugin'"
-# This workflow is triggered on pushes to the repository.
 on: [push]
 env:
   DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
@@ -9,15 +8,12 @@ jobs:
   test-darwin:
     name: pytest on darwin
     runs-on: macos-11
-#    strategy:
-#      matrix:
-#        python_version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
+      - uses: actions/checkout@v4
       - name: "Set up Python"
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: actions/checkout@v4
       - name: install kiara_plugin.sample_plugin
         run: pip install -U .[dev_testing]
       - name: display installed kiara and module package versions

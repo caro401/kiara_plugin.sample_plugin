@@ -20,12 +20,12 @@ jobs:
       matrix:
         python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
+      - uses: actions/checkout@v4
       - name: "Set up Python ${{ matrix.python_version }}"
         uses: actions/setup-python@v5
         with:
           python-version: "${{ matrix.python_version }}"
           cache: pip
-      - uses: actions/checkout@v4
       - name: install kiara_plugin.sample_plugin
         run: pip install -U .[dev_testing]
       - name: display installed kiara and module package versions
@@ -74,12 +74,12 @@ jobs:
       matrix:
         python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
+      - uses: actions/checkout@v4
       - name: "Set up Python ${{ matrix.python_version }}"
         uses: actions/setup-python@v5
         with:
           python-version: "${{ matrix.python_version }}"
           cache: pip
-      - uses: actions/checkout@v4
       - name: install kiara_plugin.sample_plugin
         run: pip install -U .[dev_testing]
       - name: Test with mypy
