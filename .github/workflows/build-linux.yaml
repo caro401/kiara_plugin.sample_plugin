@@ -27,7 +27,7 @@ jobs:
           python-version: "${{ matrix.python_version }}"
           cache: pip
       - name: install kiara_plugin.sample_plugin
-        run: pip install -e -U .[dev_testing]
+        run: pip install -U -e ."[dev_testing]"
       - name: display installed kiara and module package versions
         run: pip list | grep kiara
       - name: test with pytest
