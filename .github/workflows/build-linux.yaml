@@ -4,21 +4,21 @@ on: [push]
 
 jobs:
 
-#  commitlint:
-#    name: lint commit message
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 0
-#      - uses: wagoid/commitlint-github-action@v4
+  commitlint:
+    name: lint commit message
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v5
 
   test-linux:
     name: pytest on linux
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: ["3.8", "3.9",] # "3.10", "3.11", "3.12"]
+        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - name: "Set up Python ${{ matrix.python_version }}"
@@ -70,18 +70,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: ["3.8"]#, "3.9", "3.10", "3.11", "3.12"]
+        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
-#      - name: "Set up Python ${{ matrix.python_version }}"
-#        uses: actions/setup-python@v5
-#        with:
-#          python-version: "${{ matrix.python_version }}"
-#          cache: pip
-#      - name: install kiara_plugin.sample_plugin
-#        run: pip install -U .[dev_testing]
-#      - name: Test with mypy
-#        run: make typecheck
+      - name: "Set up Python ${{ matrix.python_version }}"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python_version }}"
+          cache: pip
+      - name: install kiara_plugin.sample_plugin
+        run: pip install -U .[dev_testing]
+      - name: Test with mypy
+        run: make typecheck
 
   linting-linux:
     runs-on: ubuntu-latest
@@ -197,7 +197,7 @@ jobs:
       - name: Install, build, and upload docs site
         uses: withastro/action@v2
         with:
-            path: "./docs" # The root location of your Astro project inside the repository. (optional)
+            path: "./docs"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
