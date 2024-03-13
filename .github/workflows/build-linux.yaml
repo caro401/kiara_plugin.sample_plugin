@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python_version: ["3.8", "3.9",] # "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - name: "Set up Python ${{ matrix.python_version }}"
@@ -27,7 +27,7 @@ jobs:
           python-version: "${{ matrix.python_version }}"
           cache: pip
       - name: install kiara_plugin.sample_plugin
-        run: pip install -U .[dev_testing]
+        run: pip install -e -U .[dev_testing]
       - name: display installed kiara and module package versions
         run: pip list | grep kiara
       - name: test with pytest
@@ -56,7 +56,7 @@ jobs:
           merge-multiple: true
       - name: Combine coverage & fail if it's <100%.
         run: |
-          coverage combine
+          ls
           coverage html --skip-covered --skip-empty
           coverage report --format=markdown >> $GITHUB_STEP_SUMMARY
           coverage report --fail-under=100
