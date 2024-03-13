@@ -1,0 +1,19 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { Aside } from "@astrojs/starlight/components";
+import { Content as Changelog, getHeadings } from "../../../CHANGELOG.md";
+---
+
+<StarlightPage
+  frontmatter={{ title: `Kiara plugin #PLUGIN_NAME Changelog` }}
+  headings={getHeadings()}
+>
+  <Changelog />
+
+  <Aside type="tip">
+    Not much useful information here? Try checking the GitHub <a
+      href="https://github.com/caro401/kiara_plugin.sample_plugin/releases"
+      >Releases page</a
+    > instead.
+  </Aside>
+</StarlightPage>

@@ -9,7 +9,11 @@ import { Doc } from "@dharpa/kiara-svelte-components";
       {allData.map((d: any) => (
         <>
           <li id={d.type_name}>
-            <a href={`${import.meta.env.BASE_URL}/${version}/${pathName}/${d.type_name}`}>{d.type_name}</a>
+            <a
+              href={`${import.meta.env.BASE_URL}/${version}/${pathName}/${d.type_name}`}
+            >
+              {d.type_name}
+            </a>
             <Doc doc={d.documentation} verbose={false} />
           </li>
         </>
